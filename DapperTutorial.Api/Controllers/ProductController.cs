@@ -39,12 +39,12 @@ namespace DapperTutorial.Api.Controllers
         }
         [HttpGet]
         [Route("GetProducts")]
-        public async Task<IHttpActionResult> GetProducts([FromUri]string ProductName)
+        public async  Task<IHttpActionResult> GetProducts([FromUri]string ProductName)
         {                  
             try
             {                
-                var result = await ProductDal.GetProducts(ProductName);
-                var products = _mapper.Map<List<ProductModel>>(result);
+                List<Product> products = await ProductDal.GetProducts(ProductName);
+                List<ProductModel> productModels = _mapper.Map<List<ProductModel>>(products);
                 return Ok(products);
 
             }

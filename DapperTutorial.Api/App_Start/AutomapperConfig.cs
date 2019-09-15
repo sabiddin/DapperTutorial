@@ -13,7 +13,7 @@ namespace DapperTutorial.Api.App_Start
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<MapperProfile>();
+                cfg.AddProfile<ProductProfile>();
             });
 
             return config.CreateMapper();

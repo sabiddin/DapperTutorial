@@ -47,5 +47,23 @@ namespace DapperTutorial.Dal
             }
             return products;
         }
+        public static List<Product> GetAllProducts(string ProductName)
+        {
+            List<Product> products = new List<Product>();
+            try
+            {
+                using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DapperTutorialConnectionString"].ToString()))
+                {
+                    products = connection.Query<Product>("sp_ProductGet",
+                        new { ProductName = ProductName },
+                        commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return products;
+        }
+
     }
 }
